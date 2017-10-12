@@ -1,6 +1,15 @@
-@mixin linkColor($color) {
+@mixin linkColor($color, $highlightColor: false) {
+
+    // If no highlight color is provided, use a lighter version of $color
+    // Else use the supplied $highlightColor
+    $realHighlightColor: lighten($color, 10%);
+    @if $highlightColor {
+        $realHighlightColor: $highlightColor;
+    }
+
     color: $color;
+
     &:hover {
-        color: lighten($color, 10%);
+        color: $realHighlightColor;
     }
 }
