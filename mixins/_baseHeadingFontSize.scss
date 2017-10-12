@@ -1,6 +1,12 @@
-@mixin baseHeadingFontSize($size) {
+@mixin baseHeadingFontSize($size, $largeSize: false) {
+
+    $realLargeSize: $size * 1.2;
+    @if $largeSize {
+        $realLargeSize: $largeSize;
+    }
+
     font-size: $size;
     @include breakpoint(medium) {
-        font-size: $size * 1.2;
+        font-size: $realLargeSize;
     }
 }
