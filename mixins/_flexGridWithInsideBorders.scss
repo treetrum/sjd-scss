@@ -1,0 +1,41 @@
+// Flex Grid With Inside Borders
+// -----------------------------
+
+@mixin flexGridWithInsideBorders(
+    $numberOfColumns,
+    $borderColor: hsl(0, 0, 90%),
+    $borderWidth: 1px,
+    $borderStyle: solid,
+    $numberOfItemsInLastRow: false) {
+
+	// Handle default numberOfItemsInLastRow
+	@if ( $numberOfItemsInLastRow == false ) { $numberOfItemsInLastRow: $numberOfColumns; }
+
+    // Setup the base flex grid
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+
+		// Setup the item widths
+        width: (100%) / $numberOfColumns;
+
+        // Setup the item borders
+        border-right: $borderWidth $borderStyle $borderColor;
+        border-bottom: $borderWidth $borderStyle $borderColor;
+
+        // Remove the border right from the last item in each row
+        &:nth-child(#{$numberOfColumns}n+#{$numberOfColumns}) {
+            border-right: 0;
+        }
+
+        // Remove the border botom from each item in the last row
+        @for $i from 1 through $numberOfItemsInLastRow {
+            &:nth-last-child(#{$i}) {
+                border-bottom: 0;
+            }
+        }
+    }
+}

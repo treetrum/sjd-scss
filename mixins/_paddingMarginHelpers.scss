@@ -1,0 +1,22 @@
+// Padding / Margin Mixin Helpers
+// ------------------------------
+
+@mixin xPadding($amount) {
+    padding-right: $amount;
+    padding-left: $amount;
+}
+
+@mixin yPadding($amount) {
+    padding-top: $amount;
+    padding-bottom: $amount;
+}
+
+@mixin xMargin($amount) {
+    margin-right: $amount;
+    margin-left: $amount;
+}
+
+@mixin yMargin($amount) {
+    margin-top: $amount;
+    margin-bottom: $amount;
+}
