@@ -1,6 +1,6 @@
 {
   "name": "sjd-scss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A place to store my commonly used SCSS mixins and placeholders",
   "main": "sjd-scss.scss",
   "scripts": {
