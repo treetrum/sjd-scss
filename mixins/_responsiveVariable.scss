@@ -8,29 +8,29 @@
  */
 @mixin responsiveVariable($mapVariable, $propertyName, $multiplier: 1, $addition: 0) {
 
-	// Helper mixin to print out the property, so that my code is DRY.
-	@mixin printProperty($propertyName, $value, $multiplier, $addition) {
-		@if $multiplier != 1 {
-			#{$propertyName}: ($value + $addition) * $multiplier;
-		} @else {
-			@if $addition != 0 {
-				#{$propertyName}: ($value + $addition);
-			} @else {
-				#{$propertyName}: $value;
-			}
-		}
-	}
-
 	// Mixin logic
 	@each $breakpoint, $value in $mapVariable {
 		@if map-has-key($breakpoints, $breakpoint) {
 			@include breakpoint(#{$breakpoint}) {
-				@include printProperty($propertyName, $value, $multiplier, $addition);
+				@include _createCSSPropertyWithDetails($propertyName, $value, $multiplier, $addition);
 			}
 		} @else {
 			@media screen and (min-width: rem-calc($breakpoint)) {
-				@include printProperty($propertyName, $value, $multiplier, $addition);
+				@include _createCSSPropertyWithDetails($propertyName, $value, $multiplier, $addition);
 			}
+		}
+	}
+}
+
+// Helper mixin to print out the property, so that my code is DRY.
+@mixin _createCSSPropertyWithDetails($propertyName, $value, $multiplier, $addition) {
+	@if $multiplier != 1 {
+		#{$propertyName}: ($value + $addition) * $multiplier;
+	} @else {
+		@if $addition != 0 {
+			#{$propertyName}: ($value + $addition);
+		} @else {
+			#{$propertyName}: $value;
 		}
 	}
 }
